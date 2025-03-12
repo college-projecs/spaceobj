@@ -1,7 +1,5 @@
 # space.obj
 
-	---
-
 **Team Members:**
 - Aleksandr Belousov
 - Alp Doymaz
