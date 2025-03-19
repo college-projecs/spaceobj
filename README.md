@@ -1,6 +1,6 @@
 # space.obj
 
-![logo](img/space obj.png)
+<img src="img/space obj.png" width=800 /> ![](img/space obj.png) 
 
 **Team Members:**
 - Aleksandr Belousov
