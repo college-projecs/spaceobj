@@ -1,5 +1,7 @@
 # space.obj
 
+![logo](img/space obj.png)
+
 **Team Members:**
 - Aleksandr Belousov
 - Alp Doymaz
