@@ -44,18 +44,15 @@ export class Sun extends BaseBody {
   
   setBrightness(intensity: number): this {
     this.emissiveIntensity = intensity;
-    
-    // Update material
     if (this.mesh) {
       (this.mesh.material as THREE.MeshLambertMaterial).emissiveIntensity = intensity;
       (this.mesh.material as THREE.MeshLambertMaterial).needsUpdate = true;
     }
-    
-    // Update light
     if (this.light) {
       this.light.intensity = this.lightIntensity * intensity;
     }
     
     return this;
+    // mes
   }
 }
