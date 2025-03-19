@@ -70,7 +70,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 200px;
-  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0) 30%), url("top_bg.jpeg") center center / cover no-repeat;
+  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0) 30%), url("img/top_bg.jpeg") center center / cover no-repeat;
 }
 
 .hero-left {
