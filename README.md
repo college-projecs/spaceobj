@@ -1,6 +1,6 @@
 # space.obj
 
-<img src="img/space obj.png" width=800 /> ![](img/space obj.png) 
+<img src="img/space obj.png" width=300 />
 
 **Team Members:**
 - Aleksandr Belousov
