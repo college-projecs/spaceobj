@@ -1,32 +1,54 @@
-# space.obj
+# React + TypeScript + Vite
 
-<img src="img/space obj.png" width=200 />
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## team members
-- **Aleksandr Belousov**
-- **Alp Doymaz**
-- **Wai Hlaing**
-- **Ngawang Lama**
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### color scheme
-The background colors used are `#131515` and `#7DE2D1` for various elements.
+## Expanding the ESLint configuration
 
-### project overview
-Exploring the planets, stars, and other celestial objects can often seem monotonous. To showcase the true wonder and excitement of space, our team—Aleksandr Belousov, Alp Doymaz, Wai Hlaing, and Ngawang Lama—has developed **Space.Obj**. This project features 3D models of planets and other celestial bodies, complete with fascinating facts and information such as size, orbit distance, mass, diameter, gravity, average temperature, and more. Users will be able to navigate through space, view a solar calendar, and change the date to visualize the orbital configuration of each planet. Additionally, users can create custom planets with desired characteristics, which can be saved and shared, making Space.Obj an engaging and educational experience.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### platform design
-**Space.Obj** is designed to be an extensible platform, allowing for continuous addition of new functionalities and features. The use of 3D visualization tools provides compelling visuals and makes abstract concepts easier to understand, enhancing the educational value of the project. 
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-To achieve this, we have chosen:
-- **Frontend:** React and Three.js
-- **Backend:** Django with SQLite/PostgreSQL
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-Three.js, a 3D graphics library, will render the 3D models in real-time, while React will handle the website's interactive UI elements. React will communicate with Django/PostgreSQL to retrieve and update planet data.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-### team responsibilities
-- **Wai Hlaing:** Frontend development using Three.js and assisting with SQL/Django database queries.
-- **Ngawang Lama:** Backend development using Django.
-- **Alp Doymaz:** Backend development with PostgreSQL and Django API calls.
-- **Aleksandr Belousov:** Frontend development using Figma for prototyping, and HTML, CSS, and JavaScript (Three.js library) for the website.
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
