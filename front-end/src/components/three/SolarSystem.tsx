@@ -56,7 +56,7 @@ const SolarSystem = () => {
             position={[15, 0, 0]} 
             size={1.0} 
             color="#B0E0E6" 
-            planetTilt={97.8} 
+            planetTilt={0} 
             hasRings={true} 
             ringColor="#87CEEB" 
             ringInnerRadius={1.4} 
