@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './style.css';
+
 
 function Header() {
   return (
@@ -203,6 +203,39 @@ function HomePage() {
       <Slider />
       <Intro />
       <PlaceholderBoxes />
+      <Footer />
+    </div>
+  );
+}
+
+function SolarSystem() {
+  return (
+    <div>
+      <Header />
+      <Hero />
+
+      <Footer />
+    </div>
+  );
+}
+
+function ComparisonPage() {
+  return (
+    <div>
+      <Header />
+      <Hero />
+
+      <Footer />
+    </div>
+  );
+}
+
+function CustomizerPage() {
+  return (
+    <div>
+      <Header />
+      <Hero />
+
       <Footer />
     </div>
   );
