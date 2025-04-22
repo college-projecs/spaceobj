@@ -30,7 +30,7 @@ const Sun = ({ position, size, texture }: SunProps) => {
         map={sunTexture}
       />
       <pointLight
-        intensity={200}
+        intensity={1000}
         distance={100}
         decay={2}
         color="#FFF9E5"
