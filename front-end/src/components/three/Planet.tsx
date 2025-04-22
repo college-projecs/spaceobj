@@ -1,6 +1,8 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useFrame, useLoader } from '@react-three/fiber'
 import { Group, Mesh, TextureLoader, MathUtils } from 'three'
+import {Html} from '@react-three/drei'
+import {useSpring, a} from '@react-spring/three'
 
 interface PlanetProps {
   position: [number, number, number]
@@ -16,6 +18,7 @@ interface PlanetProps {
   ringTilt?: number
   orbitSpeed?: number
   rotationSpeed?: number
+  info?:string
 }
 
 const Planet = ({
@@ -32,6 +35,7 @@ const Planet = ({
   ringTilt = 0,
   orbitSpeed = 0.002,
   rotationSpeed = 0.01,
+  info,
 }: PlanetProps) => {
   const planetRef = useRef<Mesh>(null)
   const ringsRef = useRef<Mesh>(null)
@@ -42,6 +46,13 @@ const Planet = ({
   
   const tiltRadians = MathUtils.degToRad(planetTilt) // convert to radians
   
+  const [planetInfo, setPlanetInfo] = useState(false)
+
+  const [isZoom, setIsZoom] = useState(false)
+  const{scale} = useSpring({
+    scale: isZoom ? 3 : 1
+  })
+
   useFrame(() => {
     if (planetRef.current) {
       planetRef.current.rotation.y += rotationSpeed
@@ -55,7 +66,9 @@ const Planet = ({
   return (
     <group ref={groupRef} position={position}>
       <group rotation={[tiltRadians, 0, 0]}>
-        <mesh ref={planetRef}>
+        <a.mesh ref={planetRef} scale={scale} onClick={() => {
+          setIsZoom(prev => !prev)
+          setPlanetInfo(!planetInfo)}}>
           <sphereGeometry args={[size, 64, 64]} />
           <meshStandardMaterial
             color={color}
@@ -64,7 +77,7 @@ const Planet = ({
             map={planetTexture}
             envMapIntensity={0.5}
           />
-        </mesh>
+        </a.mesh>
         
         {hasRings && (
           <mesh ref={ringsRef} rotation={[MathUtils.degToRad(ringTilt - planetTilt), 0, 0]}>
@@ -81,6 +94,22 @@ const Planet = ({
           </mesh>
         )}
       </group>
+      {planetInfo && (
+        <Html position={[position[0]+3,position[1]+5, position[2]]} center>
+          <div style={{
+            color: 'white',
+            background: 'rgba(94, 118, 97, 0.5)',
+            padding: '15px 15px',
+            borderRadius: '12px',
+            fontSize: '0.5 rem',
+            lineHeight: '1.5',
+            fontFamily: 'monospace',
+            whiteSpace: 'pre',
+          }}>
+            {info}
+          </div>
+        </Html>
+      )}
     </group>
   )
 }
