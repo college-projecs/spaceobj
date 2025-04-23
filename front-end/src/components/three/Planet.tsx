@@ -1,136 +1,71 @@
-import { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useFrame, useLoader } from '@react-three/fiber'
-import { Group, Mesh, TextureLoader, MathUtils } from 'three'
-import {Html} from '@react-three/drei'
-import {useSpring, a} from '@react-spring/three'
+import {
+  Group,
+  Mesh,
+  TextureLoader,
+  DataTexture,
+  DoubleSide,
+} from 'three'
 
-interface PlanetProps {
-  position: [number, number, number]
+export interface PlanetProps {
+  position?: [number, number, number]
   size: number
-  color: string
-  planetTilt: number
-  texture?: string
+  color?: string
+  texture?: string | DataTexture
+  planetTilt?: number
   hasRings?: boolean
-  ringColor?: string
-  ringTexture?: string
-  ringInnerRadius?: number
-  ringOuterRadius?: number
-  ringTilt?: number
   orbitSpeed?: number
-  rotationSpeed?: number
-  info?: {
-    diameter?: string;
-    mass?: string;
-    gravity?: string;
-    orbitalPeriod?: string;
-    averageTemperature?: string;
-    distanceFromSun?: string;
-    [key: string]: string | undefined;
-  }
 }
 
-const Planet = ({
-  position,
+export default function Planet({
+  position = [0, 0, 0],
   size,
-  color,
-  planetTilt,
+  color = '#ffffff',
   texture,
+  planetTilt = 0,
   hasRings = false,
-  ringColor = '#FFFFFF',
-  ringTexture,
-  ringInnerRadius = 1.5,
-  ringOuterRadius = 2.2,
-  ringTilt = 0,
-  orbitSpeed = 0.002,
-  rotationSpeed = 0.01,
-  info,
-}: PlanetProps) => {
-  const planetRef = useRef<Mesh>(null)
-  const ringsRef = useRef<Mesh>(null)
-  const groupRef = useRef<Group>(null)
-  
-  const planetTexture = texture ? useLoader(TextureLoader, texture) : null
-  const ringsTextureMap = ringTexture ? useLoader(TextureLoader, ringTexture) : null
-  
-  const tiltRadians = MathUtils.degToRad(planetTilt) // convert to radians
-  
-  const [planetInfo, setPlanetInfo] = useState(false)
+  orbitSpeed = 0.01,
+}: PlanetProps) {
+  const groupRef = useRef<Group>(null!)
+  const meshRef = useRef<Mesh>(null!)
 
-  const [isZoom, setIsZoom] = useState(false)
-  const{scale} = useSpring({
-    scale: isZoom ? 3 : 1
-  })
+  // always call the hook with a valid URL (fallback to earth texture)
+  const defaultURL = typeof texture === 'string' ? texture : '/three/images/earthmap1k.jpg'
+  const loadedTexture = useLoader(TextureLoader, defaultURL)
+  const finalMap = texture instanceof DataTexture ? texture : loadedTexture
 
-  useFrame(() => {
-    if (planetRef.current) {
-      planetRef.current.rotation.y += rotationSpeed
-    }
-    
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime()
+    // revolve the planet around the origin
     if (groupRef.current) {
-      groupRef.current.rotation.y += orbitSpeed
+      groupRef.current.rotation.y = t * orbitSpeed
+    }
+    // spin on its own axis
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.005
     }
   })
-  
+
   return (
-    <group ref={groupRef} position={position}>
-      <group rotation={[tiltRadians, 0, 0]}>
-        <a.mesh ref={planetRef} scale={scale} onClick={() => {
-          setIsZoom(prev => !prev)
-          setPlanetInfo(!planetInfo)}}>
-          <sphereGeometry args={[size, 64, 64]} />
-          <meshStandardMaterial
-            color={color}
-            roughness={0.7}
-            metalness={0.3}
-            map={planetTexture}
-            envMapIntensity={0.5}
-          />
-        </a.mesh>
-        
-        {hasRings && (
-          <mesh ref={ringsRef} rotation={[MathUtils.degToRad(ringTilt - planetTilt), 0, 0]}>
-            <ringGeometry args={[size * ringInnerRadius, size * ringOuterRadius, 64]} />
-            <meshStandardMaterial
-              color={ringColor}
-              roughness={0.9}
-              metalness={0.1}
-              transparent={true}
-              opacity={0.8}
-              map={ringsTextureMap}
-              side={2}
-            />
-          </mesh>
-        )}
-      </group>
-      {planetInfo && (
-        <Html position={[position[0]+3,position[1]+5, position[2]]} center>
-          <div style={{
-            color: 'white',
-            background: 'rgba(94, 118, 97, 0.5)',
-            padding: '15px 15px',
-            borderRadius: '12px',
-            fontSize: '0.5 rem',
-            lineHeight: '1.5',
-            fontFamily: 'monospace',
-            whiteSpace: 'pre',
-          }}>
-            {info && (
-              <table style={{ color: 'white', fontSize: '1em', borderSpacing: 4 }}>
-                <tbody>
-                  {Object.entries(info).map(([key, value]) => (
-                    <tr key={key}>
-                      <td style={{ fontWeight: 'bold', paddingRight: 8 }}>{key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}:</td>
-                      <td>{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-          </div>
-        </Html>
+    <group ref={groupRef}>
+      {/* Planet sphere */}
+      <mesh
+        ref={meshRef}
+        position={position}
+        rotation={[0, (planetTilt * Math.PI) / 180, 0]}
+      >
+        <sphereGeometry args={[size, 32, 32]} />
+        <meshStandardMaterial map={finalMap} color={color} />
+      </mesh>
+
+      {/* Optional rings, attached to planet group */}
+      {hasRings && (
+        <mesh position={position} rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[size * 1.2, size * 1.5, 64]} />
+          <meshStandardMaterial side={DoubleSide} color="#cccccc" />
+        </mesh>
       )}
     </group>
   )
 }
-
-export default Planet

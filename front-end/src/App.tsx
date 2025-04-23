@@ -4,13 +4,15 @@ import SolarSystem from './components/three/SolarSystem'
 import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ComparePage from './pages/ComparePage'
+import CustomPlanets from './pages/CustomPlanets'
 
 function App() {
   return (
     <BrowserRouter>
       <nav style={{ position: 'absolute', top: 10, left: 10, zIndex: 1 }}>
         <Link to="/" style={{ marginRight: '10px', color: 'white' }}>Home</Link>
-        <Link to="/compare" style={{ color: 'white' }}>Compare</Link>
+        <Link to="/compare" style={{marginRight: '10px', color: 'white' }}>Compare</Link>
+        <Link to="/custom" style={{marginRight: '10px', color: 'white' }}>Custom</Link>
       </nav>
       <Routes>
         <Route path="/" element={
@@ -25,6 +27,7 @@ function App() {
           </Canvas>
         } />
         <Route path="/compare" element={<ComparePage />} />
+        <Route path="/custom" element={<CustomPlanets />} />
       </Routes>
     </BrowserRouter>
   )
