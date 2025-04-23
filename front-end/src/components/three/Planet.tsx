@@ -18,7 +18,15 @@ interface PlanetProps {
   ringTilt?: number
   orbitSpeed?: number
   rotationSpeed?: number
-  info?:string
+  info?: {
+    diameter?: string;
+    mass?: string;
+    gravity?: string;
+    orbitalPeriod?: string;
+    averageTemperature?: string;
+    distanceFromSun?: string;
+    [key: string]: string | undefined;
+  }
 }
 
 const Planet = ({
@@ -106,7 +114,18 @@ const Planet = ({
             fontFamily: 'monospace',
             whiteSpace: 'pre',
           }}>
-            {info}
+            {info && (
+              <table style={{ color: 'white', fontSize: '1em', borderSpacing: 4 }}>
+                <tbody>
+                  {Object.entries(info).map(([key, value]) => (
+                    <tr key={key}>
+                      <td style={{ fontWeight: 'bold', paddingRight: 8 }}>{key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}:</td>
+                      <td>{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </Html>
       )}

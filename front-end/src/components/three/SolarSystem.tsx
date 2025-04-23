@@ -43,7 +43,7 @@ const SolarSystem = () => {
               hasRings={planet.hasRings}
               orbitSpeed={planet.orbitSpeed}
               texture={planet.texture}
-              info={planet.info}
+              info={planet.info} // now an object
               ringColor={planet.ringColor}
               ringInnerRadius={planet.ringInnerRadius}
               ringOuterRadius={planet.ringOuterRadius}
