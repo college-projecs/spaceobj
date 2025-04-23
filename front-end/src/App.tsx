@@ -5,11 +5,26 @@ import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ComparePage from './pages/ComparePage'
 import CustomPlanets from './pages/CustomPlanets'
-
+import HomePage from './pages/Homepage'
 function App() {
+  console.log("test")
   return (
+    <>
     <BrowserRouter>
-      <nav style={{ position: 'absolute', top: 10, left: 10, zIndex: 1 }}>
+      
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/compare" element={<ComparePage />} />
+        <Route path="/custom" element={<CustomPlanets />} />
+      </Routes>
+    </BrowserRouter>
+    
+   </>
+  )
+}
+
+/**
+ * <nav style={{ position: 'absolute', top: 10, left: 10, zIndex: 1 }}>
         <Link to="/" style={{ marginRight: '10px', color: 'white' }}>Home</Link>
         <Link to="/compare" style={{marginRight: '10px', color: 'white' }}>Compare</Link>
         <Link to="/custom" style={{marginRight: '10px', color: 'white' }}>Custom</Link>
@@ -26,11 +41,6 @@ function App() {
             </Suspense>
           </Canvas>
         } />
-        <Route path="/compare" element={<ComparePage />} />
-        <Route path="/custom" element={<CustomPlanets />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
+ */
 
 export default App

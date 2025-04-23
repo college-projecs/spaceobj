@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -183,10 +183,12 @@ function Footer() {
         </div>
       </div>
       <div className="footer-icons">
-        <img src="https://via.placeholder.com/40/7DE2D1/131515?text=1" alt="icon 1" />
+        {/* <img src="https://via.placeholder.com/40/7DE2D1/131515?text=1" alt="icon 1" />
         <img src="https://via.placeholder.com/40/7DE2D1/131515?text=2" alt="icon 2" />
         <img src="https://via.placeholder.com/40/7DE2D1/131515?text=3" alt="icon 3" />
         <img src="https://via.placeholder.com/40/7DE2D1/131515?text=4" alt="icon 4" />
+        */}
+        
       </div>
       <div className="footer-bottom">
         <p>hunter college css233 | group 2</p>
@@ -195,7 +197,7 @@ function Footer() {
   );
 }
 
-function HomePage() {
+export function HomePage() {
   return (
     <div>
       <Header />
