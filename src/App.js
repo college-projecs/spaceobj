@@ -31,7 +31,7 @@ function Hero() {
     <section className="hero" style={heroStyle}>
       <div className="hero-left">
         <h1 className="hero-title">
-          the stars don’t look bigger,<br />
+          the stars don't look bigger,<br />
           but they do look brighter
         </h1>
       </div>
@@ -130,7 +130,7 @@ function Intro() {
           “somewhere, something incredible is waiting to be known.” — <span className="quote-author">carl sagan</span>
         </p>
         <p>
-          our goal is to make space exploration more accessible, blending scientific accuracy with creative freedom. whether you’re observing the planets, comparing their sizes, or designing your own world, space.obj puts the cosmos at your fingertips.
+          our goal is to make space exploration more accessible, blending scientific accuracy with creative freedom. whether you're observing the planets, comparing their sizes, or designing your own world, space.obj puts the cosmos at your fingertips.
         </p>
       </div>
     </section>
@@ -142,7 +142,7 @@ function PlaceholderBoxes() {
     <section className="placeholder-boxes">
       <div className="box">
         <img src="img/face.jpeg" alt="Placeholder 1" />
-        <p>Alp<br />forename</p>
+        <p>Alp<br />Doymaz</p>
       </div>
       <div className="box">
         <img src="img/face.jpeg" alt="Placeholder 2" />
