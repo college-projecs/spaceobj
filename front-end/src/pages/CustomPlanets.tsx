@@ -1,12 +1,12 @@
+import * as THREE from 'three';
 import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Planet from '../components/three/Planet';
 import OrbitLine from '../components/three/OrbitLine';
 import { DataTexture, RGBAFormat, UnsignedByteType, RepeatWrapping } from 'three';
-import { Noise } from 'noisejs';
+import Noise from 'noisejs';
 
-// Simple HSL-to-RGB converter for colorful mode
 function hslToRgb(h: number, s: number, l: number): [number, number, number] {
   const hue2rgb = (p: number, q: number, t: number): number => {
     if (t < 0) t += 1;
@@ -180,7 +180,7 @@ export default function CustomPlanets() {
       <main style={{ flexGrow: 1 }}>
         <Canvas>
           <ambientLight intensity={0.5} />
-          <hemisphereLight skyColor={0xffffff} groundColor={0x444444} intensity={0.4} />
+          <hemisphereLight args={[0xffffff, 0x444444, 0.4]} />
           <directionalLight position={[5, 10, 7.5]} intensity={1} />
 
           <OrbitControls enablePan={false} />
@@ -191,6 +191,7 @@ export default function CustomPlanets() {
               texture={texture}
               planetTilt={axialTilt}
               hasRings={showRings}
+              info={"place holder"}
             />
           </AnimatedOrbit>
 

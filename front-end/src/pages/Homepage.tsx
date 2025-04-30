@@ -1,21 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-
 function Header() {
   return (
     <header>
       <nav className="navbar">
         <div className="logo-container">
           <Link to="/">
-            <img src="img/space obj.png" alt="space.obj logo" className="logo-img" />
+            <img src="/img/space%20obj.png" alt="space.obj logo" className="logo-img" />
           </Link>
           <span className="logo-text">space.obj</span>
         </div>
         <ul className="nav-links">
-          <li><Link to="/solar-system">solar system</Link></li>
-          <li><Link to="/comparison">space object comparison</Link></li>
-          <li><Link to="/customizer">planet customizer</Link></li>
+          <li><Link to="/">home</Link></li>
+          <li><Link to="/solarsystem">solar system</Link></li>
+          <li><Link to="/compare">space object comparison</Link></li>
+          <li><Link to="/custom">planet customizer</Link></li>
         </ul>
       </nav>
     </header>
@@ -36,16 +36,16 @@ function Hero() {
         </h1>
       </div>
       <div className="hero-right">
-        <a href="#" className="hero-btn">explore</a>
-        <a href="#" className="hero-btn">customize</a>
+        <Link to="/solar-system" className="hero-btn">explore</Link>
+        <Link to="/custom" className="hero-btn">customize</Link>
       </div>
     </section>
   );
 }
 
 function Slider() {
-  const containerRef = useRef(null);
-  const trackRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const slidesData = [
     { color: '#ff6b6b', text: 'Slide 1' },
     { color: '#feca57', text: 'Slide 2' },
@@ -59,6 +59,7 @@ function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const updateSlider = () => {
+    if (!containerRef.current || !trackRef.current) return;
     const containerWidth = containerRef.current.offsetWidth;
     const centerOfSlide = currentIndex * totalSlideWidth + slideWidth / 2 + slideMargin;
     let offset = centerOfSlide - containerWidth / 2;
@@ -79,7 +80,7 @@ function Slider() {
     return () => window.removeEventListener('resize', handleResize);
   }, [currentIndex]);
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     let newIndex = index;
     if (newIndex < 0) newIndex = slidesData.length - 1;
     if (newIndex >= slidesData.length) newIndex = 0;
@@ -141,19 +142,19 @@ function PlaceholderBoxes() {
   return (
     <section className="placeholder-boxes">
       <div className="box">
-        <img src="img/face.jpeg" alt="Placeholder 1" />
+        <img src="/img/face.jpeg" alt="Placeholder 1" />
         <p>Alp<br />Doymaz</p>
       </div>
       <div className="box">
-        <img src="img/face.jpeg" alt="Placeholder 2" />
+        <img src="/img/face.jpeg" alt="Placeholder 2" />
         <p>Aleksandr<br />Belousov</p>
       </div>
       <div className="box">
-        <img src="img/face.jpeg" alt="Placeholder 3" />
+        <img src="/img/face.jpeg" alt="Placeholder 3" />
         <p>Wai<br />Hlaing</p>
       </div>
       <div className="box">
-        <img src="img/LamaFace.jpeg" alt="Placeholder 4" />
+        <img src="/img/LamaFace.jpeg" alt="Placeholder 4" />
         <p>Lama<br />Ngawang</p>
       </div>
     </section>
@@ -172,7 +173,7 @@ function Footer() {
         </div>
         <div className="footer-logo">
           <Link to="/">
-            <img src="img/space obj.png" alt="space.obj logo" />
+            <img src="/img/space%20obj.png" alt="space.obj logo" />
           </Link>
           <span>space.obj</span>
         </div>
@@ -205,39 +206,6 @@ export function HomePage() {
       <Slider />
       <Intro />
       <PlaceholderBoxes />
-      <Footer />
-    </div>
-  );
-}
-
-function SolarSystem() {
-  return (
-    <div>
-      <Header />
-      <Hero />
-
-      <Footer />
-    </div>
-  );
-}
-
-function ComparisonPage() {
-  return (
-    <div>
-      <Header />
-      <Hero />
-
-      <Footer />
-    </div>
-  );
-}
-
-function CustomizerPage() {
-  return (
-    <div>
-      <Header />
-      <Hero />
-
       <Footer />
     </div>
   );

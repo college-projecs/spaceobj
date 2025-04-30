@@ -34,23 +34,31 @@ const SolarSystem = () => {
             size={2.5} 
           />
           
-          {planetData.map((planet) => (
-            <Planet key={planet.name}
-              position={planet.position as [number, number, number]}
-              size={planet.size}
-              color={planet.color}
-              planetTilt={planet.planetTilt}
-              hasRings={planet.hasRings}
-              orbitSpeed={planet.orbitSpeed}
-              texture={planet.texture}
-              info={planet.info} // now an object
-              ringColor={planet.ringColor}
-              ringInnerRadius={planet.ringInnerRadius}
-              ringOuterRadius={planet.ringOuterRadius}
-              ringTilt={planet.ringTilt}
-              ringTexture={planet.ringTexture}
-            />
-          ))}
+          {planetData.map((planet) => {
+            const infoString = planet.info
+              ? Object.entries(planet.info)
+                  .map(([key, value]) => `${key}: ${value}`)
+                  .join('\n')
+              : "";
+            return (
+              <Planet
+                key={planet.name}
+                position={planet.position as [number, number, number]}
+                size={planet.size}
+                color={planet.color}
+                planetTilt={planet.planetTilt}
+                hasRings={planet.hasRings}
+                orbitSpeed={planet.orbitSpeed}
+                texture={planet.texture}
+                info={infoString}
+                ringColor={planet.ringColor}
+                ringInnerRadius={planet.ringInnerRadius}
+                ringOuterRadius={planet.ringOuterRadius}
+                ringTilt={planet.ringTilt}
+                ringTexture={planet.ringTexture}
+              />
+            );
+          })}
 
           <OrbitLine radius={3.9} color="#888888" />
           <OrbitLine radius={7.2} color="#888888" />

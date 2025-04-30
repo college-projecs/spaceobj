@@ -88,7 +88,11 @@ export default function ComparePage() {
                 ringOuterRadius={firstPlanet.ringOuterRadius}
                 ringTilt={firstPlanet.ringTilt}
                 orbitSpeed={0}
-                info={firstPlanet.info}
+                info={
+                  Object.entries(firstPlanet.info)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join('\n')
+                }
               />
             </Suspense>
           </Canvas>
@@ -157,7 +161,11 @@ export default function ComparePage() {
                 ringOuterRadius={secondPlanet.ringOuterRadius}
                 ringTilt={secondPlanet.ringTilt}
                 orbitSpeed={0}
-                info={secondPlanet.info}
+                info={
+                  Object.entries(secondPlanet.info)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join('\n')
+                }
               />
             </Suspense>
           </Canvas>

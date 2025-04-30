@@ -104,9 +104,9 @@
     "ringInnerRadius": 1.2,
     "ringOuterRadius": 2.2,
     "ringTilt": 26.7,
-    "orbitSpeed": 0.00003,
     "ringTexture": "/three/images/saturnringcolor.jpg",
     "texture": "/three/images/saturnmap.jpg",
+    "orbitSpeed": 0.00003,
     "info": {
       "diameter": "74,898 mi",
       "mass": "568 10^24 kg",
@@ -149,9 +149,9 @@
     "ringInnerRadius": 2.0,
     "ringOuterRadius": 2.3,
     "ringTilt": 26.7,
-    "orbitSpeed": 0.000006,
     "ringTexture": "/three/images/uranusringcolour.jpg",
     "texture": "/three/images/uranusmap.jpg",
+    "orbitSpeed": 0.000006,
     "info": {
       "diameter": "30,599 mi",
       "mass": "102 10^24 kg",
