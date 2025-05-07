@@ -1,6 +1,6 @@
 # space.obj
 
-<img src="img/space obj.png" width=200 />
+<img src="front-end/public/img/space obj.png" width=200 />
 
 ## team members
 - **Aleksandr Belousov**
