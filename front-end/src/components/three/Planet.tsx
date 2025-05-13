@@ -22,7 +22,7 @@ export interface PlanetProps {
   ringTexture?: string
   ringInnerRadius?: number
   ringOuterRadius?: number
-  info: string,
+  info?: string,
   ringTilt?: number
   orbitSpeed?: number
 }
