@@ -24,13 +24,13 @@ function AnimatedOrbit({ radius, speed, children }: AnimatedOrbitProps) {
 export default function CustomPlanets() {
   // Realistic values for solar system
   const realisticValues = {
-    orbitRadius: { min: 0.1, max: 30, scale: 5 }, // from 0.1 AU to 30 AU, scaling for visual effect
-    orbitSpeed: { min: 0.01, max: 5, scale: 0.5}, // based on realistic speeds, scaled down
-    planetSize: { min: 0.1, max: 2, scale: 1 }, // scaled to fit planet sizes
+    orbitRadius: { min: 0.1, max: 30, scale: 5 }, 
+    orbitSpeed: { min: 0.01, max: 5, scale: 0.5}, 
+    planetSize: { min: 0.1, max: 2, scale: 1 },
   };
 
   const [planetSize, setPlanetSize] = useState(1);
-  const [orbitRadius, setOrbitRadius] = useState(5); // This is the scale factor for the visual effect
+  const [orbitRadius, setOrbitRadius] = useState(5); 
   const [axialTilt, setAxialTilt] = useState(23);
   const [orbitSpeed, setOrbitSpeed] = useState(0.5);
   const [waterThreshold, setWaterThreshold] = useState(0.5);
@@ -47,7 +47,7 @@ export default function CustomPlanets() {
 
   function createPlanetTexture() {
     const noise = new Noise(seed);
-    const dimension = 128;
+    const dimension = 256;
     const pixelCount = dimension * dimension;
     const buffer = new Uint8Array(4 * pixelCount);
 
@@ -111,6 +111,26 @@ export default function CustomPlanets() {
     tex.needsUpdate = true;
     setTexture(tex);
   }
+
+function savePlanet() {
+  fetch('/api/planets/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name:            planetName,
+      seed:            seed,
+      planet_size:     planetSize,
+      orbit_radius:    orbitRadius,
+      axial_tilt:      axialTilt,
+      orbit_speed:     orbitSpeed,
+      water_threshold: waterThreshold,
+      show_rings:      showRings,
+      color_mode:      colorMode,
+      gas_type:        gasType
+    }),
+  })
+  .then(() => alert('planet saved!'));
+}
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
@@ -200,6 +220,9 @@ export default function CustomPlanets() {
         </div>
 
         <button onClick={() => { setSeed(Math.random()); createPlanetTexture(); }} style={{ marginTop: 12 }}>Re-generate Texture</button>
+        <button onClick={savePlanet}>
+          Save Planet
+        </button>
       </aside>
 
       <main style={{ flexGrow: 1 }}>
