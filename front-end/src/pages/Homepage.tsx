@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function Header() {
+export function Header() {
   return (
     <header>
       <nav className="navbar">
@@ -12,7 +12,6 @@ function Header() {
           <span className="logo-text">space.obj</span>
         </div>
         <ul className="nav-links">
-          <li><Link to="/">home</Link></li>
           <li><Link to="/solarsystem">solar system</Link></li>
           <li><Link to="/compare">space object comparison</Link></li>
           <li><Link to="/custom">planet customizer</Link></li>
@@ -22,7 +21,7 @@ function Header() {
   );
 }
 
-function Hero() {
+export function Hero() {
   const heroStyle = {
     background: 'linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0) 30%), url("/img/hero_bg.jpeg") center center / cover no-repeat'
   };
@@ -46,13 +45,15 @@ function Hero() {
 function Slider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+
   const slidesData = [
-    { color: '#ff6b6b', text: 'Slide 1' },
-    { color: '#feca57', text: 'Slide 2' },
-    { color: '#48dbfb', text: 'Slide 3' },
-    { color: '#1dd1a1', text: 'Slide 4' },
-    { color: '#5f27cd', text: 'Slide 5' }
-  ];
+  { src: '/img/Frame 14.png', alt: 'Slide 1' },
+  { src: '/img/Frame 15.png', alt: 'Slide 2' },
+  { src: '/img/Frame 16.png', alt: 'Slide 3' },
+  { src: '/img/Frame 14.png', alt: 'Slide 4' },
+  { src: '/img/Frame 15.png', alt: 'Slide 5' },
+];
+
   const slideWidth = 1200;
   const slideMargin = 10;
   const totalSlideWidth = slideWidth + slideMargin * 2;
@@ -75,10 +76,9 @@ function Slider() {
   }, [currentIndex]);
 
   useEffect(() => {
-    const handleResize = () => updateSlider();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [currentIndex]);
+    window.addEventListener('resize', updateSlider);
+    return () => window.removeEventListener('resize', updateSlider);
+  }, []);
 
   const goToSlide = (index: number) => {
     let newIndex = index;
@@ -92,15 +92,28 @@ function Slider() {
       <div className="slider-container" ref={containerRef}>
         <div className="slider-track" ref={trackRef}>
           {slidesData.map((slide, idx) => (
-            <div key={idx} className="slide" style={{ backgroundColor: slide.color }}>
-              {slide.text}
+            <div
+              key={idx}
+              className="slide"
+              style={{
+                width: slideWidth,
+                margin: `0 ${slideMargin}px`,
+                flex: '0 0 auto'
+              }}
+            >
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
             </div>
           ))}
         </div>
       </div>
+
       <div className="slider-controls">
         <button className="arrow-btn prev-btn" onClick={() => goToSlide(currentIndex - 1)}>
-          <span className="arrow-left"></span>
+          ‹
         </button>
         <div className="dots">
           {slidesData.map((_, idx) => (
@@ -108,11 +121,11 @@ function Slider() {
               key={idx}
               className={`dot ${idx === currentIndex ? 'active' : ''}`}
               onClick={() => goToSlide(idx)}
-            ></span>
+            />
           ))}
         </div>
         <button className="arrow-btn next-btn" onClick={() => goToSlide(currentIndex + 1)}>
-          <span className="arrow-right"></span>
+          ›
         </button>
       </div>
     </div>
@@ -161,7 +174,7 @@ function PlaceholderBoxes() {
   );
 }
 
-function Footer() {
+export function Footer() {
   return (
     <footer>
       <div className="footer-divider"></div>

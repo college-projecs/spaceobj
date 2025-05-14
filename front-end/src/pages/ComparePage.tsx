@@ -4,6 +4,9 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Planet from "../components/three/Planet";
 import { Suspense } from "react";
+import { Header } from "./Homepage";
+import { Hero } from "./Homepage";
+import { Footer } from "./Homepage";
 
 export default function ComparePage() {
   const [firstPlanetName, setFirstPlanetName] = useState(
@@ -19,12 +22,19 @@ export default function ComparePage() {
 
   // mighjt wanna remove tables and add more modern stuff WIP showcase for now
   return (
-    <div style={{ padding: "20px", color: "white", fontFamily: "sans-serif" }}>
-      <h1>Compare Planets</h1>
+    <div>
       <div>
-        <span>
-          First Planet:
-          <select
+
+      <Header/>
+      <Hero/> 
+
+        <section className="intro">
+      <div className="intro-container">
+      <p className="quote-text">
+        </p>
+        <h2>compare planets</h2>
+        <p>
+          first planet: <select
             value={firstPlanetName}
             onChange={(e) => setFirstPlanetName(e.target.value)}
           >
@@ -34,10 +44,9 @@ export default function ComparePage() {
               </option>
             ))}
           </select>
-        </span>
-        <span style={{ marginLeft: "20px" }}>
-          Second Planet:
-          <select
+        </p>
+        <p>
+          second planet: <select
             value={secondPlanetName}
             onChange={(e) => setSecondPlanetName(e.target.value)}
           >
@@ -47,7 +56,10 @@ export default function ComparePage() {
               </option>
             ))}
           </select>
-        </span>
+        </p>
+
+      </div>
+    </section>
       </div>
       <div
         style={{
@@ -59,7 +71,7 @@ export default function ComparePage() {
           gap: "20px",
         }}
       >
-        (
+        
         <div
           style={{
             position: "relative",
@@ -131,7 +143,7 @@ export default function ComparePage() {
             }
           </div>
         </div>
-        )
+        
         <div
           style={{
             position: "relative",
@@ -184,7 +196,6 @@ export default function ComparePage() {
               textAlign: "right",
             }}
           >
-            (
             <table
               style={{ color: "white", fontSize: "1em", borderSpacing: 4 }}
             >
@@ -202,10 +213,10 @@ export default function ComparePage() {
                 ))}
               </tbody>
             </table>
-            )
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

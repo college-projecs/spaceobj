@@ -241,32 +241,35 @@ footer {
 }
 
 .slider-container {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    overflow: hidden;
-    margin-top: 40px;
-    border-radius: 8px;
-  }
-  
-  .slider-track {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  
-  .slide {
-    width: 1200px;
-    margin: 0 10px;
-    flex-shrink: 0;
-    height: 300px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: #131515;
-  }
-  
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  margin-top: 40px;
+  border-radius: 8px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 1200px;
+  margin: 0 10px;
+  height: 300px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
   .slider-controls {
     display: inline-flex;
     justify-content: center;
@@ -279,60 +282,64 @@ footer {
     margin-top: 20px;
     margin-left: 40%;
   }
-  
-  .arrow-btn {
-    background-color: #7DE2D1;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    position: relative;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  }
-  
-  .arrow-btn:hover {
-    background-color: #eeeeee;
-  }
-  
-  .arrow-left,
-  .arrow-right {
-    display: block;
-    width: 10px;
-    height: 10px;
-    border: 2px solid #131515;
-    border-top: none;
-    border-right: none;
-    transform: rotate(45deg);
-  }
-  
-  .arrow-right {
-    transform: rotate(225deg);
-  }
-  
-  .dots {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .dot {
-    width: 10px;
-    height: 10px;
-    background-color: #7DE2D1;
-    border-radius: 50%;
-    opacity: 0.3;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-  }
-  
-  .dot.active {
-    opacity: 1;
-  }
-  
-  .dot:hover {
-    opacity: 0.6;
-  }
+
+.arrow-btn {
+  background-color: #7DE2D1;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.arrow-btn:hover {
+  background-color: #eeeeee;
+}
+
+.arrow-left,
+.arrow-right {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #131515;
+  border-top: none;
+  border-right: none;
+  display: block;
+}
+
+.arrow-left {
+  transform: rotate(45deg);
+}
+
+.arrow-right {
+  transform: rotate(225deg);
+}
+
+.dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #7DE2D1;
+  border-radius: 50%;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+.dot:hover {
+  opacity: 0.6;
+}
+
