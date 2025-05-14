@@ -20,47 +20,47 @@ export default function ComparePage() {
 
   if (!firstPlanet || !secondPlanet) throw new Error("Planet not found");
 
-  // mighjt wanna remove tables and add more modern stuff WIP showcase for now
   return (
     <div>
-      <div>
+      <Header />
+      <Hero />
 
-      <Header/>
-      <Hero/> 
+      <section className="intro compare-section">
+        <div className="intro-container">
+          <h2>compare planets</h2>
+          <div className="compare-controls">
+            <label htmlFor="first-planet">
+              <span>first planet</span>
+              <select
+                id="first-planet"
+                value={firstPlanetName}
+                onChange={(e) => setFirstPlanetName(e.target.value)}
+              >
+                {solarSystemData.map((p) => (
+                  <option key={p.name} value={p.name}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label htmlFor="second-planet">
+              <span>second planet</span>
+              <select
+                id="second-planet"
+                value={secondPlanetName}
+                onChange={(e) => setSecondPlanetName(e.target.value)}
+              >
+                {solarSystemData.map((p) => (
+                  <option key={p.name} value={p.name}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
 
-        <section className="intro">
-      <div className="intro-container">
-      <p className="quote-text">
-        </p>
-        <h2>compare planets</h2>
-        <p>
-          first planet: <select
-            value={firstPlanetName}
-            onChange={(e) => setFirstPlanetName(e.target.value)}
-          >
-            {solarSystemData.map((p) => (
-              <option key={p.name} value={p.name}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </p>
-        <p>
-          second planet: <select
-            value={secondPlanetName}
-            onChange={(e) => setSecondPlanetName(e.target.value)}
-          >
-            {solarSystemData.map((p) => (
-              <option key={p.name} value={p.name}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </p>
-
-      </div>
-    </section>
-      </div>
       <div
         style={{
           display: "flex",

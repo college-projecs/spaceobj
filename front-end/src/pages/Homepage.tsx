@@ -13,7 +13,7 @@ export function Header() {
         </div>
         <ul className="nav-links">
           <li><Link to="/solarsystem">solar system</Link></li>
-          <li><Link to="/compare">space object comparison</Link></li>
+          <li><Link to="/compare">planet comparison</Link></li>
           <li><Link to="/custom">planet customizer</Link></li>
         </ul>
       </nav>
@@ -50,8 +50,8 @@ function Slider() {
   { src: '/img/Frame 14.png', alt: 'Slide 1' },
   { src: '/img/Frame 15.png', alt: 'Slide 2' },
   { src: '/img/Frame 16.png', alt: 'Slide 3' },
-  { src: '/img/Frame 14.png', alt: 'Slide 4' },
-  { src: '/img/Frame 15.png', alt: 'Slide 5' },
+  { src: '/img/Frame 17.png', alt: 'Slide 4' },
+  { src: '/img/Frame 18.png', alt: 'Slide 5' },
 ];
 
   const slideWidth = 1200;
@@ -155,15 +155,15 @@ function PlaceholderBoxes() {
   return (
     <section className="placeholder-boxes">
       <div className="box">
-        <img src="/img/face.jpeg" alt="Placeholder 1" />
+        <img src="/img/AlpFace.jpg" alt="Placeholder 1" />
         <p>Alp<br />Doymaz</p>
       </div>
       <div className="box">
-        <img src="/img/face.jpeg" alt="Placeholder 2" />
+        <img src="/img/AlexFace.jpg" alt="Placeholder 2" />
         <p>Aleksandr<br />Belousov</p>
       </div>
       <div className="box">
-        <img src="/img/face.jpeg" alt="Placeholder 3" />
+        <img src="/img/WaiFace.png" alt="Placeholder 3" />
         <p>Wai<br />Hlaing</p>
       </div>
       <div className="box">
@@ -180,9 +180,8 @@ export function Footer() {
       <div className="footer-divider"></div>
       <div className="footer-middle">
         <div className="footer-links">
-          <a href="#">link</a>
-          <a href="#">link</a>
-          <a href="#">link</a>
+          <a href="https://github.com/college-projecs/spaceobj">github</a>
+          <a href="front-end/src/pages/ComparePage.tsx">compare</a>
         </div>
         <div className="footer-logo">
           <Link to="/">
@@ -191,18 +190,9 @@ export function Footer() {
           <span>space.obj</span>
         </div>
         <div className="footer-links">
-          <a href="#">link</a>
-          <a href="#">link</a>
-          <a href="#">link</a>
+          <a href="front-end/src/pages/SolarSystemPage.tsx">solar system</a>
+          <a href="front-end/src/pages/CustomPlanets.tsx">custom planet</a>
         </div>
-      </div>
-      <div className="footer-icons">
-        {/* <img src="https://via.placeholder.com/40/7DE2D1/131515?text=1" alt="icon 1" />
-        <img src="https://via.placeholder.com/40/7DE2D1/131515?text=2" alt="icon 2" />
-        <img src="https://via.placeholder.com/40/7DE2D1/131515?text=3" alt="icon 3" />
-        <img src="https://via.placeholder.com/40/7DE2D1/131515?text=4" alt="icon 4" />
-        */}
-        
       </div>
       <div className="footer-bottom">
         <p>hunter college css233 | group 2</p>
