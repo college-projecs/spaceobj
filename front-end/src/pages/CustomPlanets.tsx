@@ -24,7 +24,7 @@ function AnimatedOrbit({ radius, speed, children }: AnimatedOrbitProps) {
 export default function CustomPlanets() {
   // Realistic values for solar system
   const realisticValues = {
-    orbitRadius: { min: 0.1, max: 30, scale: 5 }, 
+    orbitRadius: { min: 0.1, max: 5, scale: 5 }, 
     orbitSpeed: { min: 0.01, max: 5, scale: 0.5}, 
     planetSize: { min: 0.1, max: 2, scale: 1 },
   };
@@ -233,6 +233,7 @@ function savePlanet() {
           <OrbitControls enablePan={false} />
           <AnimatedOrbit radius={orbitRadius * realisticValues.orbitRadius.scale} speed={orbitSpeed * realisticValues.orbitSpeed.scale}>
             <Planet
+              info={planetName}
               size={planetSize}
               texture={texture}
               planetTilt={axialTilt}

@@ -77,7 +77,7 @@ export default function Planet({
 
   return (
     <group ref={groupRef} position={position}>
-      <group rotation={[0, (planetTilt * Math.PI) / 180, 0]}>
+      <group rotation={[0, (planetTilt * Math.PI) / 180, (planetTilt * Math.PI) / 180]}>
         <a.mesh
           ref={meshRef}
           scale={scale}
