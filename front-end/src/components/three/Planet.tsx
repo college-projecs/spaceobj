@@ -77,10 +77,9 @@ export default function Planet({
 
   return (
     <group ref={groupRef} position={position}>
-      <group rotation={[0, (planetTilt * Math.PI) / 180, 0]}>
-        <a.mesh
+      <a.group rotation={[0, (planetTilt * Math.PI) / 180, 0]} scale={scale}>
+        <mesh
           ref={meshRef}
-          scale={scale}
           onClick={() => {
             setIsZoom((prev) => !prev)
             setShowInfo((prev) => !prev)
@@ -88,7 +87,7 @@ export default function Planet({
         >
           <sphereGeometry args={[size, 32, 32]} />
           <meshStandardMaterial map={finalMap} color={color} />
-        </a.mesh>
+        </mesh>
 
         {hasRings && (
           <mesh ref={ringsRef} rotation={[MathUtils.degToRad((ringTilt ?? 0) - (planetTilt ?? 0)), 0, 0]}>
@@ -104,7 +103,7 @@ export default function Planet({
             />
           </mesh>
         )}
-      </group>
+      </a.group>
       {showInfo && (
         <Html position={[position[0] + 3, position[1] + 5, position[2]]} center>
           <div style={{

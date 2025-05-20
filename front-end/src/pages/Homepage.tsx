@@ -12,9 +12,10 @@ export function Header() {
           <span className="logo-text">space.obj</span>
         </div>
         <ul className="nav-links">
-          <li><Link to="/solarsystem">solar system</Link></li>
-          <li><Link to="/compare">planet comparison</Link></li>
-          <li><Link to="/custom">planet customizer</Link></li>
+          <li><Link to="/solarsystem">Solar System</Link></li>
+          <li><Link to="/compare">Planet Comparison</Link></li>
+          <li><Link to="/custom">Planet Customizer</Link></li>
+          <li><Link to="/display">Created Planets</Link></li>
         </ul>
       </nav>
     </header>
@@ -35,7 +36,7 @@ export function Hero() {
         </h1>
       </div>
       <div className="hero-right">
-        <Link to="/solar-system" className="hero-btn">explore</Link>
+        <Link to="/solarsystem" className="hero-btn">explore</Link>
         <Link to="/custom" className="hero-btn">customize</Link>
       </div>
     </section>

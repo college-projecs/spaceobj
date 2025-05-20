@@ -132,7 +132,7 @@ export default function CustomPlanets() {
   }
 
   function savePlanet() {
-    fetch('/api/planets/', {
+    fetch('http://127.0.0.1:8000/Create_planet/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -380,6 +380,11 @@ export default function CustomPlanets() {
                     texture={texture}
                     planetTilt={axialTilt}
                     hasRings={showRings}
+                    info={planetName + "\n"+
+                      "Diameter: "+(planetSize*7926.2).toString() + " mi\n"+
+                      "OrbitSize: "+orbitRadius.toString()+" AU" + "\n"+
+                      "OrbitSpeed: "+orbitSpeed.toString()+ "AU/day"+"\n"+
+                      "AxialTilt: "+axialTilt.toString() + "º"}
                   />
                 </AnimatedOrbit>
                 <OrbitLine
