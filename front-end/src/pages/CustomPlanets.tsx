@@ -41,13 +41,13 @@ function AnimatedOrbit({
 export default function CustomPlanets() {
   // realistic ranges
   const realisticValues = {
-    orbitRadius: { min: 0.1, max: 30, scale: 5 },
+    orbitRadius: { min: 0.1, max: 5, scale: 5 },
     orbitSpeed: { min: 0.01, max: 5, scale: 0.5 },
-    planetSize: { min: 0.1, max: 2, scale: 1 },
+    planetSize: { min: 0.1, max: 5, scale: 1 },
   };
 
   const [planetSize, setPlanetSize] = useState(1);
-  const [orbitRadius, setOrbitRadius] = useState(5);
+  const [orbitRadius, setOrbitRadius] = useState(0.01);
   const [axialTilt, setAxialTilt] = useState(23);
   const [orbitSpeed, setOrbitSpeed] = useState(0.5);
   const [waterThreshold, setWaterThreshold] = useState(0.5);
