@@ -11,3 +11,18 @@ class planets(models.Model):
 
     def __str__(self):
         return self.name
+
+class CreatePlanet(models.Model):
+    name = models.CharField(max_length=100)
+    seed = models.FloatField()
+    planet_size = models.FloatField()
+    orbit_radius = models.FloatField()
+    axial_tilt = models.FloatField()
+    orbit_speed = models.FloatField()
+    water_threshold = models.FloatField()
+    show_rings = models.FloatField()
+    color_mode = models.CharField(max_length=100)
+    gas_type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
