@@ -13,7 +13,7 @@ class planets(models.Model):
         return self.name
 
 class CreatePlanet(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="Untitled", blank=True)
     seed = models.FloatField()
     planet_size = models.FloatField()
     orbit_radius = models.FloatField()
@@ -26,3 +26,8 @@ class CreatePlanet(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.name:        
+            self.name = "Untitled"
+        super().save(*args, **kwargs)
