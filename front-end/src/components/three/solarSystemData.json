@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Mercury",
+    "position": [3.9, 0, 0],
+    "size": 0.38,
+    "color": "#A9A9A9",
+    "planetTilt": 180,
+    "hasRings": false,
+    "orbitSpeed": 0.0042,
+    "texture": "/three/images/mercurymap.jpg",
+    "info": {
+      "diameter": "3,021.9 mi",
+      "mass": "0.33 10^24 kg",
+      "gravity": "3.7 g",
+      "orbitalPeriod": "88 days",
+      "averageTemperature": "167 ºC",
+      "distanceFromSun": "57.9 10^6 km"
+    }
+  },
+  {
+    "name": "Venus",
+    "position": [7.2, 0, 0],
+    "size": 0.95,
+    "color": "#A9A9A9",
+    "planetTilt": 177,
+    "hasRings": false,
+    "orbitSpeed": 0.0016,
+    "texture": "/three/images/venusmap.jpg",
+    "info": {
+      "diameter": "7,520.8 mi",
+      "mass": "4.87 10^24 kg",
+      "gravity": "8.9 g",
+      "orbitalPeriod": "224.7 days",
+      "averageTemperature": "464 ºC",
+      "distanceFromSun": "108.2 10^6 km"
+    }
+  },
+  {
+    "name": "Earth",
+    "position": [10.0, 0, 0],
+    "size": 1,
+    "color": "#A9A9A9",
+    "planetTilt": 156,
+    "hasRings": false,
+    "orbitSpeed": 0.0010,
+    "texture": "/three/images/earthmap1k.jpg",
+    "info": {
+      "diameter": "7,926.2 mi",
+      "mass": "5.97 10^24 kg",
+      "gravity": "9.8 g",
+      "orbitalPeriod": "365.2 days",
+      "averageTemperature": "15 ºC",
+      "distanceFromSun": "149.6 10^6 km"
+    }
+  },
+  {
+    "name": "Mars",
+    "position": [15.2, 0, 0],
+    "size": 0.53,
+    "color": "#A9A9A9",
+    "planetTilt": 154,
+    "hasRings": false,
+    "orbitSpeed": 0.0005,
+    "texture": "/three/images/mars_1k_color.jpg",
+    "info": {
+      "diameter": "4,212.3 mi",
+      "mass": "0.642 10^24 kg",
+      "gravity": "3.7 g",
+      "orbitalPeriod": "687.0 days",
+      "averageTemperature": "-65 ºC",
+      "distanceFromSun": "228.0 10^6 km"
+    }
+  },
+  {
+    "name": "Jupiter",
+    "position": [25.0, 0, 0],
+    "size": 6,
+    "color": "#B0E0E6",
+    "planetTilt": 176,
+    "hasRings": true,
+    "ringColor": "#87CEEB",
+    "ringInnerRadius": 1.3,
+    "ringOuterRadius": 1.5,
+    "ringTilt": 97.8,
+    "texture": "/three/images/jupitermap.jpg",
+    "orbitSpeed": 0.00008,
+    "info": {
+      "diameter": "86,881 mi",
+      "mass": "1898 10^24 kg",
+      "gravity": "23.1 g",
+      "orbitalPeriod": "4331 days",
+      "averageTemperature": "-110 ºC",
+      "distanceFromSun": "778.5 10^6 km"
+    }
+  },
+  {
+    "name": "Saturn",
+    "position": [45.5, 0, 0],
+    "size": 4.5,
+    "color": "#DAA520",
+    "planetTilt": 153,
+    "hasRings": true,
+    "ringColor": "#C2B280",
+    "ringInnerRadius": 1.2,
+    "ringOuterRadius": 2.2,
+    "ringTilt": 26.7,
+    "ringTexture": "/three/images/saturnringcolor.jpg",
+    "texture": "/three/images/saturnmap.jpg",
+    "orbitSpeed": 0.00003,
+    "info": {
+      "diameter": "74,898 mi",
+      "mass": "568 10^24 kg",
+      "gravity": "9.0 g",
+      "orbitalPeriod": "10747 days",
+      "averageTemperature": "-140 ºC",
+      "distanceFromSun": "1432.0 10^6 km"
+    }
+  },
+  {
+    "name": "Neptune",
+    "position": [75.5, 0, 0],
+    "size": 2.4,
+    "color": "#DAA520",
+    "planetTilt": 82,
+    "hasRings": true,
+    "ringColor": "#C2B280",
+    "ringInnerRadius": 2.0,
+    "ringOuterRadius": 2.2,
+    "ringTilt": 26.7,
+    "orbitSpeed": 0.00001,
+    "texture": "/three/images/neptunemap.jpg",
+    "info": {
+      "diameter": "31,518 mi",
+      "mass": "86.8 10^24 kg",
+      "gravity": "8.7 g",
+      "orbitalPeriod": "30,589 days",
+      "averageTemperature": "-195 ºC",
+      "distanceFromSun": "2867.0 10^6 km"
+    }
+  },
+  {
+    "name": "Uranus",
+    "position": [110, 0, 0],
+    "size": 2,
+    "color": "#DAA520",
+    "planetTilt": 151,
+    "hasRings": true,
+    "ringColor": "#C2B280",
+    "ringInnerRadius": 2.0,
+    "ringOuterRadius": 2.3,
+    "ringTilt": 26.7,
+    "ringTexture": "/three/images/uranusringcolour.jpg",
+    "texture": "/three/images/uranusmap.jpg",
+    "orbitSpeed": 0.000006,
+    "info": {
+      "diameter": "30,599 mi",
+      "mass": "102 10^24 kg",
+      "gravity": "11.0 g",
+      "orbitalPeriod": "59,800 days",
+      "averageTemperature": "-200 ºC",
+      "distanceFromSun": "4515.0 10^6 km"
+    }
+  }
+]
