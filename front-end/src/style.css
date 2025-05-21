@@ -435,6 +435,43 @@ footer {
   transition: border-color 0.3s ease;
 }
 
+:root {
+  --track: #4b5563;
+  --thumb: #10b981;
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--track);
+  cursor: pointer;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--thumb);
+  border: 2px solid #fff;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--thumb);
+  border: 2px solid #fff;
+}
+
+.custom-range::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--track);
+}
+
 .custom-range {
   padding: 0.2rem 0;
 }

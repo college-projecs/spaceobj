@@ -15,6 +15,11 @@ import {
 } from "three";
 import { Noise } from "noisejs";
 
+const AU_IN_KM = 149_597_870.7;
+function auToKm(au: number): string {
+  return (au * AU_IN_KM).toExponential(2);   // e.g. “1.50e+08”
+}
+
 type CustomPlanetData = {
   name: string;
   seed: number;
@@ -86,17 +91,14 @@ function createPlanetTexture(data: CustomPlanetData) {
 }
 
 export default function ComparePage() {
-  // --- Custom planets state ---
   const [customPlanets, setCustomPlanets] = useState<CustomPlanetData[]>([]);
   const [customTextures, setCustomTextures] = useState<Record<string, DataTexture>>({});
 
-  // --- Fetch custom planets on mount ---
   useEffect(() => {
     fetch("http://127.0.0.1:8000/Create_planet/")
       .then((res) => res.json())
       .then((data) => {
         setCustomPlanets(data);
-        // Precompute textures for all custom planets
         const textures: Record<string, DataTexture> = {};
         data.forEach((planet: CustomPlanetData) => {
           textures[planet.name] = createPlanetTexture(planet);
@@ -106,7 +108,6 @@ export default function ComparePage() {
       .catch(console.error);
   }, []);
 
-  // --- Combine basic and custom planets for selection ---
   const planetOptions: PlanetOption[] = [
     ...solarSystemData.map((p) => ({
       type: "basic" as const,
@@ -120,17 +121,14 @@ export default function ComparePage() {
     })),
   ];
 
-  // --- Default selections: first two planets (basic or custom) ---
   const [firstPlanetName, setFirstPlanetName] = useState<string>(planetOptions[0]?.name || "");
   const [secondPlanetName, setSecondPlanetName] = useState<string>(planetOptions[1]?.name || planetOptions[0]?.name || "");
 
-  // --- Find selected planets ---
   const firstPlanetOption = planetOptions.find((p) => p.name === firstPlanetName);
   const secondPlanetOption = planetOptions.find((p) => p.name === secondPlanetName);
 
   if (!firstPlanetOption || !secondPlanetOption) throw new Error("Planet not found");
 
-  // --- Info table rendering helper ---
   function renderInfoTable(planet: PlanetOption) {
     if (planet.type === "basic") {
       return (
@@ -148,7 +146,7 @@ export default function ComparePage() {
         </table>
       );
     } else {
-      // Custom planet info
+
       const d = planet.data as CustomPlanetData;
       return (
         <table style={{ color: "white", fontSize: "1em", borderSpacing: 4 }}>
@@ -160,10 +158,6 @@ export default function ComparePage() {
             <tr>
               <td style={{ fontWeight: "bold", paddingRight: 8 }}>Diameter:</td>
               <td>{(d.planet_size * 7926.2).toFixed(1)} mi</td>
-            </tr>
-            <tr>
-              <td style={{ fontWeight: "bold", paddingRight: 8 }}>Orbit Size:</td>
-              <td>{d.orbit_radius} AU</td>
             </tr>
             <tr>
               <td style={{ fontWeight: "bold", paddingRight: 8 }}>Orbit Speed:</td>
@@ -193,13 +187,21 @@ export default function ComparePage() {
               <td style={{ fontWeight: "bold", paddingRight: 8 }}>Rings:</td>
               <td>{d.show_rings ? "Yes" : "No"}</td>
             </tr>
+            <tr>
+              <td style={{ fontWeight: "bold", paddingRight: 8 }}>Distance&nbsp;from&nbsp;Sun:</td>
+              <td>{auToKm(d.orbit_radius)}&nbsp;km</td>
+            </tr>
+            {planet.data.orbitRadius && (
+              <tr>
+                <td style={{ fontWeight: "bold", paddingRight: 8 }}>Distance&nbsp;from&nbsp;Sun:</td>
+                <td>{auToKm(planet.data.orbitRadius)}&nbsp;km</td>
+              </tr>
+            )}
           </tbody>
         </table>
       );
     }
   }
-
-  // --- Planet rendering helper ---
   function renderPlanet(planet: PlanetOption) {
     if (planet.type === "basic") {
       const p = planet.data;
@@ -236,7 +238,7 @@ export default function ComparePage() {
           info={
             p.name + "\n" +
             "Diameter: " + (p.planet_size * 7926.2).toFixed(1) + " mi\n" +
-            "OrbitSize: " + p.orbit_radius + " AU\n" +
+            "Distance_from_sun: " + p.orbit_radius + " AU\n" +
             "OrbitSpeed: " + p.orbit_speed + " AU/day\n" +
             "AxialTilt: " + p.axial_tilt + "º"
           }
