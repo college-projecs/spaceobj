@@ -49,28 +49,28 @@ this a component in hindsight).
 First, we define the ranges of the sliders (realisticValues)
 that work well with the display page on the site
 
-Next, we define the parameters that define a custom planet as a list of constants.
-The useStates define some default value that is uploaded when you first open the page.
+Next, we define the parameters of a custom planet as a list of constants.
+The useState's define some default value for when you first open the page.
 We generate a new seed parameter using Math.random().
 
 The createPlanetTexture function is what allows us to procedurally generate the planet
-textual. It takes in whether the planet is a gas or earth-type and also takes in
-the waterThreshold for earth-type planets. 
+texture. It takes in whether the planet is a gas or earth-type and also takes in
+the waterThreshold for earth-type planets.
 
-  First a Uint8Array array stores a large set of values corresponding to each pixel
-  on the texture (hence, it is sized dimensionxdimension).
+  First a Uint8Array is a 1D array that stores a large set of values corresponding to each pixel
+  on the texture (hence, it is sized dimension x dimension).
 
   Next we iterate through this array in a for loop that uses mod(dimension) to
-  define rows and coluumns in the 1D array. 
+  "define" rows and coluumns in the 1D array. 
   
-    Each pixel is given assigned a value in cartesian coordinates using its position in spherical coordinates. 
+    Each pixel is  assigned a value in cartesian coordinates using its position in spherical coordinates. 
     
       Spherical coordinates use theta to determine horizontal rotation and phi to define vertical
       rotation, and, with some Calc III, can be used to convert that into an x,y,z value. If we
       want to make streaks for a gaseous planet the y values are multiplied by 10
       which is similar to a horizontal dilation that stretches patches of color. 
     
-    Every single coordinate is given some value through the Noise() random number generator. 
+    Every single (x,y,z) coordinate is given some value through the Noise() random number generator. 
     A switch is used to differentiate between earth-type and gas-type color logic: assigns a
     color to the Uint8Array pixel in that position. The colors were hard coded for the different
     atmosphere types, and green and blue for land and water. For some reason the buffer array,
@@ -78,6 +78,11 @@ the waterThreshold for earth-type planets.
 
     Finally this U8intArray is wrapped around the planet object and its visuals are updated.
 
+  Perlin Noise was used because it creates lumpy, smooth gradients that resemble topographical features.
+  A simple noise algorithm would have generated a scattering of blues and greens that would not define clear
+  land masses. Simplex noise was tried but it generates 2D noise, which, when wrapped around a spherical object,
+  creates a clear cutoff that is not seamless. Since Perlin noise generates 3D noise, any cross section taken is
+  continuous.
 
 */
 export default function CustomPlanets() {
